@@ -20,7 +20,7 @@
 <details>
     <summary><strong>Comandos para instalar</strong></summary>
 
-Abrir una ventana de comandos CMDD
+Abrir una ventana de comandos CMD
 Ejecutar los siguientes comandos para verificar la instalación
     node --version
     npm --version
