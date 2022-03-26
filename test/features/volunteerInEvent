@@ -9,7 +9,7 @@ Background:
 Scenario Outline: Be part of prueba event
     Given I see the Start Americas Together page and events title
     And I scroll the page
-    When I click on the Explorar Eventos button
+    When I click on the "Explorar Eventos" button
     And I should see the events page
-    And I press the button of Participar in the test event
-    Then I should see the Dejar de Participar button
+    And I press the button of "Participar" in a test event
+    Then I should see the "Dejar de Participar" button
