@@ -267,9 +267,9 @@ const EditarPerfil = ({ sessionData }) => {
             });
     }, [datos.id]);
     const onSubmit = async (values) => {
-
-    };
-    return (
+        return 1;
+    }; 
+    return ( 
         <div style={{backgroundColor: "#F7F7F7"}}>
         <Grid container spacing={2} alignItems="center">
             <Grid item xs={6} md={12}  justifyContent="center">

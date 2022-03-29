@@ -74,21 +74,24 @@ const LoginForm = ({ sessionData, setSessionData }) => {
     message: "",
     active: false,
     severity: "success",
-    afterClose: () => {},
+    afterClose: () => {return ""},
   });
   const [activeProgressBar, setActiveProgressBar] = useState(false);
 
   const validate = (values) => {
     setValidateButton(false);
     const errors = {};
+    const campoNoValido="Campo no valido";
+    const campoRequerido="Campo requerido";
+
     if (!validEmail.test(values.email)) {
-      errors.email = "Correo no valido";
+      errors.email = campoNoValido;
     }
     if (!values.email) {
-      errors.email = "Campo requerido";
+      errors.email = campoRequerido;
     }
     if (!values.password) {
-      errors.password = "Campo requerido";
+      errors.password = campoRequerido;
     }
     if (!errors.email && !errors.password) {
       setValidateButton(true);
@@ -120,10 +123,10 @@ const LoginForm = ({ sessionData, setSessionData }) => {
       .catch((error) => {
         if (error.response.status === 405) {
           setActiveProgressBar(false);
-          activeSnackbar("La cuenta no se ha validado.", "warning", () => {});
+          activeSnackbar("La cuenta no se ha validado.", "warning", () => {return ""});
         } else {
           setActiveProgressBar(false);
-          activeSnackbar("Correo o contraseña inválidos.", "error", () => {});
+          activeSnackbar("Correo o contraseña inválidos.", "error", () => {return ""});
         }
       });
   };

@@ -92,7 +92,7 @@ const EditUser = ({ rowToUpdate, setRowToUpdate, handleCloseButton }) => {
     message: "",
     active: false,
     severity: "success",
-    afterClose: () => {},
+    afterClose: () => {return ""},
   })
   React.useEffect(() => {
     const URL = process.env.REACT_APP_API
@@ -140,16 +140,16 @@ const EditUser = ({ rowToUpdate, setRowToUpdate, handleCloseButton }) => {
             activeSnackbar(
               `Se han registrado los cambios.`,
               "success",
-              () => {}
+              () => {return ""}
             )
           }
         })
         .catch((error) => {
-          activeSnackbar("Ha ocurrido un error.", "error", () => {})
+          activeSnackbar("Ha ocurrido un error.", "error", () => {return ""})
         })
     }
     else{
-        activeSnackbar("Ingrese valores en el campo.", "warning", () => {})
+        activeSnackbar("Ingrese valores en el campo.", "warning", () => {return ""})
     }
   }
   const updateInsigniasField= () => {
@@ -160,12 +160,12 @@ const EditUser = ({ rowToUpdate, setRowToUpdate, handleCloseButton }) => {
           activeSnackbar(
             `Se han registrado los cambios.`,
             "success",
-            () => {}
+            () => {return ""}
           )
         }
       })
       .catch((error) => {
-        activeSnackbar("Ha ocurrido un error.", "error", () => {})
+        activeSnackbar("Ha ocurrido un error.", "error", () => {return ""})
       })
   }
 

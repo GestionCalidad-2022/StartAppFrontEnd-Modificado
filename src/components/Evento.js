@@ -57,7 +57,6 @@ class Evento extends Component {
     lideres: [],
     categorias: [],
     proyectos: [],
-    snackbarAbierto: false,
     mensajeSnackbar: "",
     severidadSnackbar: "",
   };

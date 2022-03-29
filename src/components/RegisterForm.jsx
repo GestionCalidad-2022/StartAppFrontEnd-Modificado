@@ -92,7 +92,7 @@ const RegisterForm = () => {
     message: "",
     active: false,
     severity: "success",
-    afterClose: () => {},
+    afterClose: () => {return ""},
   });
   const validate = (values) => {
     setValidateButton(false);
