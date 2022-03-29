@@ -74,7 +74,7 @@ const LoginForm = ({ sessionData, setSessionData }) => {
     message: "",
     active: false,
     severity: "success",
-    afterClose: () => {},
+    afterClose: () => {return ""},
   });
   const [activeProgressBar, setActiveProgressBar] = useState(false);
 
@@ -123,10 +123,10 @@ const LoginForm = ({ sessionData, setSessionData }) => {
       .catch((error) => {
         if (error.response.status === 405) {
           setActiveProgressBar(false);
-          activeSnackbar("La cuenta no se ha validado.", "warning", () => {});
+          activeSnackbar("La cuenta no se ha validado.", "warning", () => {return ""});
         } else {
           setActiveProgressBar(false);
-          activeSnackbar("Correo o contraseña inválidos.", "error", () => {});
+          activeSnackbar("Correo o contraseña inválidos.", "error", () => {return ""});
         }
       });
   };

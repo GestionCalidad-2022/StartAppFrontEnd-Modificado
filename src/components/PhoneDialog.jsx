@@ -18,7 +18,7 @@ export default function PhoneDialog({user}) {
     message:"",
     active:false,
     severity:"success",
-    afterClose:()=>{},
+    afterClose:()=>{return ""},
 })
   React.useEffect(()=>{
     AxiosClient.get(`${urlBase}extended_form/${user}`)
@@ -45,7 +45,7 @@ export default function PhoneDialog({user}) {
     AxiosClient.put(`${urlBase}extended_form/${user}`, to_send)
       .then((response) => {
         if (response.status === 202)
-            activeSnackbar("Se ha registrado el numero de telefono", "success", ()=>{})
+            activeSnackbar("Se ha registrado el numero de telefono", "success", ()=>{return ""})
         })
       .catch((response) => { console.log(response)});
   };
