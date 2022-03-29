@@ -81,14 +81,17 @@ const LoginForm = ({ sessionData, setSessionData }) => {
   const validate = (values) => {
     setValidateButton(false);
     const errors = {};
+    const campoNoValido="Campo no valido";
+    const campoRequerido="Campo requerido";
+
     if (!validEmail.test(values.email)) {
-      errors.email = "Correo no valido";
+      errors.email = campoNoValido;
     }
     if (!values.email) {
-      errors.email = "Campo requerido";
+      errors.email = campoRequerido;
     }
     if (!values.password) {
-      errors.password = "Campo requerido";
+      errors.password = campoRequerido;
     }
     if (!errors.email && !errors.password) {
       setValidateButton(true);
