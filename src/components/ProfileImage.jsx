@@ -79,7 +79,7 @@ export default function ProfileImage({ getDataProfile, setDataProfile, sessionDa
             vertical: "bottom",
             horizontal: "right",
           }}
-          badgeContent={getDataProfile.estado_de_disponibilidad ? "" : ""}
+          badgeContent= ""
           color={
             getDataProfile.estado_de_disponibilidad === "disponible"
               ? "secondary"
