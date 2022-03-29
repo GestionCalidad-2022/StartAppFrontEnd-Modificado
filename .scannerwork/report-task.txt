@@ -1,0 +1,6 @@
+projectKey=PruebaStartApp-Modificado
+serverUrl=http://localhost:9000
+serverVersion=9.3.0.51899
+dashboardUrl=http://localhost:9000/dashboard?id=PruebaStartApp-Modificado
+ceTaskId=AX_XSzEQ0517ih3Ntd1a
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX_XSzEQ0517ih3Ntd1a
