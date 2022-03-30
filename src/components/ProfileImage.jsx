@@ -68,7 +68,7 @@ export default function ProfileImage({ getDataProfile, setDataProfile, sessionDa
 
   }
 
-  const handleChange = () => {};
+  const handleChange = () => { return null; };
 
   return (
     <Grid>

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 
-function handleClick(){}
+function handleClick () { return null; }
 
 function ContenidoProyecto() {
     const classes = useStyles();

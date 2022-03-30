@@ -11,7 +11,6 @@ const URL = process.env.REACT_APP_API;
 const url = `${URL}eventos/crearevento`;
 const urlLideres = `${URL}lideres`;
 const urlCategorias = `${URL}eventos`;
-// const urlProyectos = `${URL}get_proyectos`;
 const urlProyectos = `http://localhost:5000/get_proyectos`;
 
 const apiLideres = axios.create({
@@ -72,7 +71,7 @@ class crearEvento extends React.Component {
 
   getLideres = async () => {
     try {
-      let data = await apiLideres.get("/").then(({ data }) => data);
+      let data = await apiLideres.get("/").then(({ res }) => data);
       let aux = data.map((item) => {
         return item.nombre + " " + item.apellido;
       });
@@ -83,7 +82,7 @@ class crearEvento extends React.Component {
     }
   };
   getCategorias = async () => {
-    let data = await apiCategorias.get("/categorias").then(({ data }) => data);
+    let data = await apiCategorias.get("/categorias").then(({ res }) => data);
     let aux = data.map((item) => {
       return item.interes;
     });
@@ -91,7 +90,7 @@ class crearEvento extends React.Component {
     this.setState({ categorias: aux });
   };
   getProyectos = async () => {
-    let data = await apiProyectos.get("/").then(({ data }) => data);
+    let data = await apiProyectos.get("/").then(({ res }) => data);
     let aux = data.map((item) => {
       return item.titulo;
     });
