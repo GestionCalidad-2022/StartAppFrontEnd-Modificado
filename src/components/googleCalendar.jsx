@@ -30,10 +30,9 @@ function GoogleCalendar({ eventData, active }) {
     message: "",
     active: false,
     severity: "success",
-    afterClose: () => {},
   })
-  const activeSnackbar = (message, severity, afterClose) => {
-    setSnackbar({ message, severity, afterClose, active: true })
+  const activeSnackbar = (message, severity) => {
+    setSnackbar({ message, severity, active: true })
   }
   const [open, setOpen] = React.useState(false);
 
@@ -154,7 +153,7 @@ function GoogleCalendar({ eventData, active }) {
               {
                 handleClick()
               }else{
-                activeSnackbar("El evento no tiene hora de inicio y fin o fecha.", "error", () => {})
+                activeSnackbar("El evento no tiene hora de inicio y fin o fecha.", "error")
               }}}
           >
             {"Añadir "}

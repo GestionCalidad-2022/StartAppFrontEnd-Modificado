@@ -59,17 +59,23 @@ import { withRouter } from "react-router";
 
 
     function horas_participadas() {
-      let horas_participadas = getDataProfile.horas_participadas_eventos;
+      let horas_participadas_val = getDataProfile.horas_participadas_eventos;
       
   
-      if (!horas_participadas) {
-        horas_participadas = 0;
+      if (!horas_participadas_val) {
+        horas_participadas_val = 0;
       }
       
-      let msj =  horas_participadas === 1 ? '1 hora' : horas_participadas + " horas";
+      let msj =  horas_participadas_val === 1 ? '1 hora' : horas_participadas_val + " horas";
       return msj;
     }
-
+    function MensajeLabel(valor1,valor2) {
+      if(smallScreen){
+       return valor1;
+      } else {
+        return valor2
+      }
+    }
     const handlePopoverOpen = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -282,7 +288,7 @@ import { withRouter } from "react-router";
                   variant="contained"
                   color="primary"
                 >
-                  {smallScreen? "Editar": "Editar Perfil"} 
+                  {EditarLabel("Editar", "Editar Perfil")} 
                 </Button>}
                 {/* <DeleteButton className={classes.paper} variant="contained">
                   Eliminar perfil
