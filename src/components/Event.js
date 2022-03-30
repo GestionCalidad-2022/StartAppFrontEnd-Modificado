@@ -2,21 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import EventsList from "./EventsList";
 
-// var event = {
-//     name: 'Event 1',
-//     volunteers: [
-//         volunteer = {
-//             name: 'Erick',
-//             attendance: true
-//         },
-//         volunteer = {
-//             name: 'Ricky',
-//             attendance: false
-//         },
-
-//     ]
-
-// };
 class Event extends React.Component {
   render() {
     return (

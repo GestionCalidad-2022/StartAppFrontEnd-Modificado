@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
-//import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Card, Modal, Button, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./EventsList.css";
@@ -26,7 +25,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import GoogleCalendar from "./googleCalendar.jsx";
 
 const url = process.env.REACT_APP_API;
-//const urlLocal = `http://localhost:5000/eventos`;
 const urlDeploy = `${url}eventos`;
 const urlCrearEvento = `${url}eventos/crearevento`;
 const urlLideres = `${url}lideres`;
@@ -41,7 +39,6 @@ const apiProyectos = axios.create({
 
 const current = new Date();
 
-//const currentDate = `${current.getFullYear()}-${current.getMonth() + 1}-${("0" + current.getDate()).slice(-2)}`;
 const currentDate = `${current.getFullYear()}-${("0" + parseInt(current.getMonth()+1)).slice(-2)}-${("0" + current.getDate()).slice(-2)}`;
 
 const api = axios.create({
@@ -102,7 +99,7 @@ class EventsList extends Component {
     this.setState({ abierto: !this.state.abierto });
   };
   getCategorias = async () => {
-    let data = await api.get("/categorias").then(({ data }) => data);
+    let data = await api.get("/categorias").then(({ res }) => data);
     let aux = data.map((item) => {
       return item.interes;
     });
@@ -113,7 +110,7 @@ class EventsList extends Component {
 
   getEvents = async () => {
     try {
-      let data = await api.get("/").then(({ data }) => data);
+      let data = await api.get("/").then(({ res }) => data);
       if (this.state.categoriaFiltrada !== "Todas") {
         data = data.filter(
           (event) =>
@@ -137,7 +134,7 @@ class EventsList extends Component {
     }
   };
   getCategorias = async () => {
-    let data = await api.get("/categorias").then(({ data }) => data);
+    let data = await api.get("/categorias").then(({ res }) => data);
     let aux = data.map((item) => {
       return item.interes;
     });
@@ -152,7 +149,7 @@ class EventsList extends Component {
       this.state.botonArchivar = false;
       this.state.botonMostrarEventosNoArchivados = true;
       this.state.botonMostrarEventosArchivados = false;
-      let data = await api.get("/").then(({ data }) => data);
+      let data = await api.get("/").then(({ res }) => data);
       if (this.state.categoriaFiltrada !== "Todas") {
         data = data.filter(
           (event) =>
@@ -220,7 +217,7 @@ class EventsList extends Component {
     try {
       var data = await api
         .get(`/participante/${window.sessionStorage.id}`)
-        .then(({ data }) => data);
+        .then(({ res }) => data);
       this.setState({ participaciones: data });
     } catch (err) {
       console.log(err);
@@ -319,7 +316,6 @@ class EventsList extends Component {
             console.log(error.message);
           });
       } else {
-        // alert("Nombre del Evento vacio");
         this.handleClick();
         this.setState({
           mensajeSnackbar: "Nombre del evento vacío",
@@ -327,7 +323,6 @@ class EventsList extends Component {
         });
       }
     } else {
-      // alert("Campos Nombre del Evento o Fecha del Evento vacio");
       this.handleClick();
       this.setState({
         mensajeSnackbar: "Nombre del Evento o Fecha del Evento vacía",
@@ -338,7 +333,7 @@ class EventsList extends Component {
 
   getLideres = async () => {
     try {
-      let data = await apiLideres.get("/").then(({ data }) => data);
+      let data = await apiLideres.get("/").then(({ res }) => data);
       let aux = data.map((item) => {
         return item.nombre + " " + item.apellido;
       });
@@ -354,7 +349,7 @@ class EventsList extends Component {
 
   getProyectos = async () => {
     try {
-      let data = await apiProyectos.get("/").then(({ data }) => data);
+      let data = await apiProyectos.get("/").then(({ res }) => data);
       let aux = data.map((item) => {
         return item.titulo;
       });
@@ -391,17 +386,10 @@ class EventsList extends Component {
       },
     });
   };
-  // handleOpen = () => this.setState({ snackbarAbierto: true });
   handleClose = () => this.setState({ snackbarAbierto: false });
   handleClick = () => this.setState({ snackbarAbierto: true });
 
   render() {
-    const modalStyles = {
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%,-50%)",
-    };
     const rolUser = this.state.user;
     const { snackbarAbierto } = this.state;
 
