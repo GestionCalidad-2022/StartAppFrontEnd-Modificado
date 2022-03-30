@@ -69,7 +69,7 @@ import { withRouter } from "react-router";
       let msj =  horas_participadas_val === 1 ? '1 hora' : horas_participadas_val + " horas";
       return msj;
     }
-    function MensajeLabel(valor1,valor2) {
+    function mensajeLabel(valor1,valor2) {
       if(smallScreen){
        return valor1;
       } else {
@@ -288,7 +288,7 @@ import { withRouter } from "react-router";
                   variant="contained"
                   color="primary"
                 >
-                  {EditarLabel("Editar", "Editar Perfil")} 
+                  { mensajeLabel('Editar', 'Editar Perfil') } 
                 </Button>}
                 {/* <DeleteButton className={classes.paper} variant="contained">
                   Eliminar perfil

@@ -20,10 +20,9 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
 
     // States:
     const [snackbar, setSnackbar] = useState({
-        message:"",
-        active:false,
-        severity:"success",
-        afterClose:()=>{},
+        message: '',
+        active: false,
+        severity: 'success'
     })
     const [snackbarStatus, setSnackbarStatus] = useState({
         message: "",
@@ -78,8 +77,8 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
             status: status
         })
     }
-    const activeSnackbar = (message, severity, afterClose)=>{
-        setSnackbar({message, severity, afterClose, active:true})
+    const activeSnackbar = (message, severity)=>{
+        setSnackbar({message, severity, active:true})
     }
     const activateSnackBar = () => {
         //debugger
@@ -89,9 +88,9 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
         if(activar){
             if(estado){
                 //debugger
-                activeSnackbar(mensaje, "success", ()=>{})
+                activeSnackbar(mensaje, "success")
             } else{
-                activeSnackbar(mensaje, "error", ()=>{})
+                activeSnackbar(mensaje, "error")
             }
         }else{
             //activeSnackbar("snackBarStatus.message", "error", ()=>{})

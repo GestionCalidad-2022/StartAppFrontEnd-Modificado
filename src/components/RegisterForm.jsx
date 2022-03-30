@@ -95,6 +95,7 @@ const RegisterForm = () => {
     afterClose: () => {return ""},
   });
   const validate = (values) => {
+    const requiredValues = "Debe tener 6 caracteres y 1 número";
     setValidateButton(false);
     const errors = {};
     if (!validEmail.test(values.email)) {
@@ -110,7 +111,7 @@ const RegisterForm = () => {
       errors.phoneValue = "Telefono req.";
     }
     if (!validPassword.test(values.password)) {
-      errors.password = "Debe tener 6 caracteres y 1 número";
+      errors.password = requiredValues;
     }
     if (values.confirmPassword !== values.password || !values.confirmPassword) {
       errors.confirmPassword = "Contraseñas no coinciden";

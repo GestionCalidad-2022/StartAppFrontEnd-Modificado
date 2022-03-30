@@ -19,8 +19,7 @@ const ResetPassword = () => {
   const [snackbar, setSnackbar] = React.useState({
     message: "",
     active: false,
-    severity: "success",
-    afterClose: () => {},
+    severity: "success"
   });
   const sendEmail = () => {
     const URL_API = process.env.REACT_APP_API_AUTH;
@@ -31,21 +30,19 @@ const ResetPassword = () => {
         if (response.status === 200) {
           activeSnackbar(
             "Se le ha enviado el correo de recuperación.",
-            "success",
-            () => {}
+            "success"
           );
         }
       })
       .catch((error) => {
         activeSnackbar(
           "No se ha enviado el correo de recuperación.",
-          "error",
-          () => {}
+          "error"
         );
       });
   };
-  const activeSnackbar = (message, severity, afterClose) => {
-    setSnackbar({ message, severity, afterClose, active: true });
+  const activeSnackbar = (message, severity) => {
+    setSnackbar({ message, severity, active: true });
   };
   return (
     <div className={classes.root}>

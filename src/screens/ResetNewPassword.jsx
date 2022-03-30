@@ -21,7 +21,7 @@ export const ResetNewPassword = () => {
     message: "",
     active: false,
     severity: "success",
-    afterClose: () => {},
+    afterClose: () => { return true},
   });
   const sendPassword = () => {
     const URL_API = process.env.REACT_APP_API_AUTH
@@ -46,7 +46,7 @@ export const ResetNewPassword = () => {
         activeSnackbar(
           "Se ha producido un error",
           "error",
-          () => {}
+          () => {window.location.href = "/login"}
         );
       });
   };
