@@ -7,7 +7,6 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { Snackbar } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
-//import GoogleCalendar from "./googleCalendar.jsx";
 import "./Evento.css";
 import Chip from "@material-ui/core/Chip";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
@@ -99,7 +98,7 @@ class Evento extends Component {
     let id = this.getIdFromURL(thisUrl);
 
     try {
-      let data = await api.get(`/${id}`).then(({ data }) => data);
+      let data = await api.get(`/${id}`).then(({ res }) => data);
       this.setState({ events: data });
     } catch (err) {
       console.log(err);
@@ -111,7 +110,7 @@ class Evento extends Component {
     let id = this.getIdFromURL(thisUrl);
 
     try {
-      let data = await api.get(`/participantes/${id}`).then(({ data }) => data);
+      let data = await api.get(`/participantes/${id}`).then(({ res }) => data);
       this.setState({ participants: data });
     } catch (err) {
       console.log(err);
@@ -132,7 +131,7 @@ class Evento extends Component {
   };
 
   getCategorias = async () => {
-    let data = await apiCategorias.get("/categorias").then(({ data }) => data);
+    let data = await apiCategorias.get("/categorias").then(({ res }) => data);
     let aux = data.map((item) => {
       return item.interes;
     });
@@ -145,7 +144,7 @@ class Evento extends Component {
 
   getLideres = async () => {
     try {
-      let data = await apiLideres.get("/").then(({ data }) => data);
+      let data = await apiLideres.get("/").then(({ res }) => data);
       let aux = data.map((item) => {
         return item.nombre + " " + item.apellido;
       });
@@ -159,7 +158,7 @@ class Evento extends Component {
     }
   };
   getProyectos = async () => {
-    let data = await apiProyectos.get("/").then(({ data }) => data);
+    let data = await apiProyectos.get("/").then(({ res }) => data);
     let aux = data.map((item) => {
       return item.titulo;
     });
@@ -209,7 +208,6 @@ class Evento extends Component {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
 
-  // handleOpen = () => this.setState({ snackbarAbierto: true });
   handleClose = () => this.setState({ snackbarAbierto: false });
   handleClick = () => this.setState({ snackbarAbierto: true });
 
