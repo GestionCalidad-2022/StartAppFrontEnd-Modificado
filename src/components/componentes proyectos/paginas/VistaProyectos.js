@@ -19,8 +19,7 @@ function VistaProyectos() {
     const [categorias, setCategorias] = useState([])
     const [proyectosPasadosCategoria, setProyectosPasadosCategoria] = useState([])
     const [actualizar, setActualizar] = useState(false)
-    const mountedRef = useRef(false) // Bandera para saber si un componente esta desmontado o no, para evitar warning de cancelacion abrubta de llamadas asincronas
-
+    const mountedRef = useRef(false) 
     // ==== VARIABLES ====
     let categoria = useQuery().get("categoria");
     let complementoHeader = categoria//categoria? categoria : tipoEstado
@@ -63,7 +62,7 @@ function VistaProyectos() {
         getCategorias()
 
         return () => {
-            mountedRef.current = false // Desmontar componentes evitando warnings
+            mountedRef.current = false
         }
     }, [actualizar, categoria, /*proyectosPasadosCategoria*/] )
 
@@ -72,27 +71,22 @@ function VistaProyectos() {
     // GETs
     async function fetchProyectos() {
         const response = await fetch(URLProyectos)
-        const data = await response.json()
-        return data;
+        return await response.json()
     }
 
-    const fetchProyectosPorCategoria = async(categoria) => {
-        const response= await fetch(`${URLProyectos}/${categoria}`)
-        const data = response && response.status === 204? [] : await response.json(); //FIXME: Evita un warning, pero backend deberia hacer esta validacion del status 204 y no frontend
-        return data
-        //setProyectos(proyectos.filter((proy) => proy.categoria == categoria));
+    const fetchProyectosPorCategoria = async(category) => {
+        const response= await fetch(`${URLProyectos}/${category}`)
+        return response && response.status === 204? [] : await response.json();
     }
 
-    async function fetchProyectosPasadosPorCategoria(categoria) {
-        const response = await fetch(`${URLProyectosPasados}/${categoria}`)
-        const data = await response.json()
-        return data;
+    async function fetchProyectosPasadosPorCategoria(category) {
+        const response = await fetch(`${URLProyectosPasados}/${category}`)
+        return await response.json()
     }
     
     const fetchCategorias = async () => {
         const response = await fetch(URLCategorias)
-        const data = await response.json()
-        return data
+        return await response.json()
     }
 
     async function fetchLideres() {
@@ -114,8 +108,7 @@ function VistaProyectos() {
         { 
             method: 'GET'
         });
-        const data = await response.json();
-        return data;
+        return await response.json();
     }
 
     const obtenerNumeroParticipantes = async (idProyecto) => {
@@ -123,16 +116,8 @@ function VistaProyectos() {
         { 
             method: 'GET'
         });
-        const data = await response.json();
-        return data;
+        return await response.json();
     }
-
-    /*async function fetchProyectosPasados() {
-        const response = await fetch(URLProyectosPasados)
-        const data = await response.json()
-        return data;
-    }*/
-    
     // CREATEs
     const crearProyecto = async (nuevoProyecto) => {
         const response = await fetch(
@@ -144,13 +129,11 @@ function VistaProyectos() {
             })
         const data = await response.json()
         setProyectos([...proyectos, data])
-        setActualizar(!actualizar) //Para activar useEffect sin causar loop infinito
-    
+        setActualizar(!actualizar)
     }
     
     // UPDATEs
     const editarProyecto = async (proyectoEditar) => {
-        //const response = 
         await fetch(
             `${URLEditarProy}/${proyectoEditar.id}`,
             {
@@ -158,9 +141,7 @@ function VistaProyectos() {
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify(proyectoEditar)
             })
-        //const data = await response.json()
-        //setProyectos([...proyectos.filter((proy) => proy.id !== proyectoEditar.id), data]) actualizar proyecto manualmente
-        setActualizar(!actualizar) //Para activar useEffect sin causar loop infinito
+        setActualizar(!actualizar)
     }
 
     const participarEnProyecto = async (id) => { 
@@ -170,9 +151,7 @@ function VistaProyectos() {
         { 
             method: 'PUT'
         })
-        const data = await response.json()
-        //setActualizar(!actualizar)
-        return data
+        return await response.json()
     }
     
     // DELETEs
@@ -183,9 +162,7 @@ function VistaProyectos() {
             { 
                 method: 'DELETE'
             })
-        const data = await response.json()
-        //setActualizar(!actualizar)
-        return data
+            return await response.json()
     }
 
     const eliminarProyecto = async (id) => { 
