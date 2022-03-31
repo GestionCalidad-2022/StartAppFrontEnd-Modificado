@@ -8,7 +8,7 @@ import Formulario from "../components/Formulario-evento.component/Formulario";
 import Attendance from "../components/Attendance";
 import crearEvento from "../components/CrearEvento/crearEvento";
 import VistaProyectos from "../components/componentes proyectos/paginas/VistaProyectos";
-import FormularioProyecto from "../components/Formulario";
+import FormularioProyecto from "../components/FormularioProyecto";
 import EditarPerfil from "../components/EditarPerfil";
 import Evento from "../components/Evento";
 import Users from "../components/UsersTable/Users"

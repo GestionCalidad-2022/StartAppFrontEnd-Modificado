@@ -133,15 +133,6 @@ class EventsList extends Component {
       console.log(err);
     }
   };
-  getCategorias = async () => {
-    let data = await api.get("/categorias").then(({ res }) => data);
-    let aux = data.map((item) => {
-      return item.interes;
-    });
-    aux.unshift("Todas");
-    this.setState({ categoriaFiltrada: aux[0] });
-    this.setState({ categorias: aux });
-  };
 
   getEventsArchivados = async () => {
     try {
@@ -206,7 +197,7 @@ class EventsList extends Component {
       })
       .then(async (response) => {
         this.mostrarMensajeSnackbar(event);
-        await this.mensajeConfirmacionParticipacion(event);
+        await this.mensajeParticipacion(event);
       })
       .catch((error) => {
         console.log(error.message);
@@ -232,7 +223,7 @@ class EventsList extends Component {
     this.setState({ categoriaFiltrada: categoria.target.value });
     this.getEventsArchivados();
   };
-  mensajeConfirmacionParticipacion = async (event) => {
+  mensajeParticipacion = async (event) => {
     this.handleClick(); //abre el snackbar
     await this.sleep(2000);
     window.location.reload();
@@ -250,17 +241,11 @@ class EventsList extends Component {
       )
       .then((response) => {
         this.mostrarMensajeSnackbar(event);
-        this.mensajeConfirmacionEliminacionParticipacion(event);
+        this.mensajeParticipacion(event);
       })
       .catch((error) => {
         console.log(error.message);
       });
-  };
-
-  mensajeConfirmacionEliminacionParticipacion = async (event) => {
-    this.handleClick(); //abre el snackbar
-    await this.sleep(2000);
-    window.location.reload();
   };
 
   //Mostrar y Ocultar botones participacion
@@ -362,7 +347,15 @@ class EventsList extends Component {
       console.log(err);
     }
   };
-
+  getMaps = async (seccion) => {
+    seccion.map((item) => {
+      return (
+        <div><option key={item} value={item}>
+          {item}
+        </option></div>
+      );
+    })
+  };
   cerrarModalInsertar() {
     this.setState({ modalInsertar: false });
   }
@@ -466,13 +459,7 @@ class EventsList extends Component {
                   value={this.state.categoriaFiltrada}
                   onChange={this.filterChangeHandler}
                 >
-                  {this.state.categorias.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.categorias)}
                 </select>
 
                 <span
@@ -497,13 +484,7 @@ class EventsList extends Component {
                   value={this.state.categoriaFiltrada}
                   onChange={this.filterPastEventsChangeHandler}
                 >
-                  {this.state.categorias.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.categorias)}
                 </select>
               </div>
 
@@ -783,13 +764,7 @@ class EventsList extends Component {
                   name="lider"
                   onChange={this.handleChange}
                 >
-                  {this.state.lideres.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.lideres)}
                 </select>
               </div>
             </div>
@@ -840,13 +815,7 @@ class EventsList extends Component {
                   name="categoria"
                   onChange={this.handleChange}
                 >
-                  {this.state.categorias.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.categorias)}
                 </select>
               </div>
             </div>
@@ -862,13 +831,7 @@ class EventsList extends Component {
                   onChange={this.handleChange}
                   label="Proyecto"
                 >
-                  {this.state.proyectos.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.proyectos)}
                 </select>
               </div>
             </div>
