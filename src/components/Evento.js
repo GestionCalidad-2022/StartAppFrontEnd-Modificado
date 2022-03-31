@@ -10,7 +10,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import "./Evento.css";
 import Chip from "@material-ui/core/Chip";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import ParticipantesEventosBtn from "./ParticipantesEventosBtn";
+import ParticipantesEventosBtn from "./ListaParticipantesProyecto";
 import EventoImagen from "../assets/event_picture.png";
 
 const url = process.env.REACT_APP_API;
@@ -68,9 +68,7 @@ class Evento extends Component {
   }
 
   getIdFromURL(thisUrl) {
-    var id = thisUrl.substring(thisUrl.indexOf("/") + 1);
-    id = thisUrl.split("/").pop();
-    return id;
+    return thisUrl.split("/").pop();
   }
 
   abrilModalEditarEvento() {
@@ -191,6 +189,16 @@ class Evento extends Component {
     await this.sleep(2000);
     this.cerrarModalEditarEvento();
     window.location.reload();
+  };
+
+  getMaps = async (seccion) => {
+    seccion.map((item) => {
+      return (
+        <div><option key={item} value={item}>
+          {item}
+        </option></div>
+      );
+    })
   };
 
   getUserRol = async () => {
@@ -366,13 +374,7 @@ class Evento extends Component {
                   onChange={this.handleChange}
                   value={this.state.formEditado.lider}
                 >
-                  {this.state.lideres.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.lideres)}
                 </select>
               </div>
             </div>
@@ -423,13 +425,7 @@ class Evento extends Component {
                   onChange={this.handleChange}
                   value={this.state.formEditado.categoria}
                 >
-                  {this.state.categorias.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.categorias)}
                 </select>
               </div>
             </div>
@@ -446,13 +442,7 @@ class Evento extends Component {
                   onChange={this.handleChange}
                   value={this.state.formEditado.proyecto}
                 >
-                  {this.state.proyectos.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.proyectos)}
                 </select>
               </div>
             </div>

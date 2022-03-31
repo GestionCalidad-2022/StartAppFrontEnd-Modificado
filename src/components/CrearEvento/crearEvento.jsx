@@ -98,6 +98,16 @@ class crearEvento extends React.Component {
     this.setState({ proyectos: aux });
   };
 
+  getMaps = async (seccion) => {
+    seccion.map((item) => {
+      return (
+        <div><option key={item} value={item}>
+          {item}
+        </option></div>
+      );
+    }) 
+  };
+
   cerrarModalInsertar = () => {
     this.setState({ modalInsertar: false });
   };
@@ -206,13 +216,7 @@ class crearEvento extends React.Component {
                   name="categoria"
                   onChange={this.handleChange}
                 >
-                  {this.state.categorias.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.categorias)}
                 </select>
               </Box>
 
@@ -245,13 +249,7 @@ class crearEvento extends React.Component {
                   name="proyecto"
                   onChange={this.handleChange}
                 >
-                  {this.state.proyectos.map((item) => {
-                    return (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
+                  {this.getMaps(this.state.proyectos)}
                 </select>
               </Box>
             </Box>

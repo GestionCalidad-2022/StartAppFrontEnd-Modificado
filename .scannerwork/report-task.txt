@@ -1,6 +1,6 @@
-projectKey=TallerDeDesarrollo-UCB-START_StartApp-Front6
+projectKey=TallerDeDesarrollo-UCB-START_StartApp-Front11
 serverUrl=http://localhost:9000
 serverVersion=9.3.0.51899
-dashboardUrl=http://localhost:9000/dashboard?id=TallerDeDesarrollo-UCB-START_StartApp-Front6
-ceTaskId=AX_dC9Bz3IzZZt8dLMYX
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AX_dC9Bz3IzZZt8dLMYX
+dashboardUrl=http://localhost:9000/dashboard?id=TallerDeDesarrollo-UCB-START_StartApp-Front11
+ceTaskId=AX_iGl_zyVCswYKA4EQ6
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX_iGl_zyVCswYKA4EQ6
