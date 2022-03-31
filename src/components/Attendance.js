@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Attendace extends React.Component {
+class Attendance extends React.Component {
 
     constructor(props){
         super(props)
@@ -66,4 +66,4 @@ class Attendace extends React.Component {
       }
     }
 
-export default Attendace
+export default Attendance

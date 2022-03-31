@@ -37,7 +37,7 @@ const CancelButton = withStyles((theme) => ({
 function TransitionDown(props) {
     return <Slide {...props} direction="down" />;
   }
-export default function AlertDialog() {
+export default function DialogConfirm() {
   
   const [transition, setTransition] = React.useState(undefined);
   const [open, setOpen] = React.useState(false);//Dialog

@@ -1,4 +1,4 @@
-export default function validateInfo(values) {
+export default function ValidarInformacion(values) {
   let errors = {};
 
   if (!values.nombre) {
@@ -7,7 +7,7 @@ export default function validateInfo(values) {
 
   if (!values.email) {
     errors.email = 'Email required';
-  } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(values.email)) {
+  } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}])|((\w+\.)+\w{2,}))$/.test(values.email)) {
     errors.email = 'Su correo electronico tiene formato incorrecto';
   }
 
