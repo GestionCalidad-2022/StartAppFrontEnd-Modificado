@@ -7,7 +7,6 @@ import EliminarProjectoBtn from '../atomos/EliminarProjectoBtn'
 import {useHistory} from "react-router-dom"
 import './ContenidoProyectoDetalle.css';
 import { Box } from '@material-ui/core';
-import { Switch } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import EventosProyecto from '../paginas/EventosProyecto';
 // Permisos/Roles:
@@ -18,16 +17,12 @@ import {useState, useRef, useEffect } from 'react';
 function ContenidoProyectoDetalle ({proyecto}) {
     const fechaFin = proyecto.fecha_fin? proyecto.fecha_fin.substring(0, 10) : "En Progreso"
     const fechaInicio = proyecto.fecha_inicio? proyecto.fecha_inicio.substring(0, 10) : "Por definir..."
-    const idUser = sessionStorage.getItem("id");
     
-    //const visualizarP = proyecto.visualizar
     const [visualizarP, setVisualizarP] = useState(proyecto.visualizar)
     let history = useHistory();
 
     const Onchange = async () => {
-        //debugger
         setVisualizarP(!visualizarP)
-       // visualizarP = !visualizarP
         const proyectoEditar={
             visualizar: visualizarP
         }
@@ -76,11 +71,9 @@ function ContenidoProyectoDetalle ({proyecto}) {
     }
 
     async function asignarParticipacion() {
-        //debugger
         const pid = proyecto.id
         const participa = await onGetParticipacion(pid)
-        const p = participa === true? true : false
-        return p
+        return participa === true? true : false
     }
     
     // OJO. no borrar el comentario dentro del useEffect() 
@@ -108,30 +101,24 @@ function ContenidoProyectoDetalle ({proyecto}) {
             { 
                 method: 'DELETE'
             })
-        const data = await response.json()
-        return data
+        return await response.json()
     }
     const onGetParticipacion = async (idProyecto) => {
-        //debugger
         const idSesion = sessionStorage.getItem("id");
         const response = await fetch(`${URLParticpaVoluntario}/${idProyecto}/sesion/${idSesion}`,
         { 
             method: 'GET'
         });
-        const data = await response.json();
-        return data;
+        return await response.json();
     }
     const participarEnProyecto = async (id) => { 
-        //debugger
         const idSesion = sessionStorage.getItem("id");
         const response = await fetch(
         `${URLParticiparProy}/${id}/sesion/${idSesion}`,
         { 
             method: 'PUT'
         })
-        const data = await response.json()
-        //setActualizar(!actualizar)
-        return data
+        return await response.json()
     }
     const eliminarProyecto = async (id) => { 
         await fetch(
