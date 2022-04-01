@@ -2,7 +2,6 @@
 import ParticiparEnProyectoBtn from '../atomos/ParticiparEnProyectoBtn';
 import EditarProyectoBtn from '../atomos/EditarProyectoBtn';
 import EtiquetaParticipacion from '../atomos/EtiquetaParticipacion';
-//import CancelarParticipacionBtn from '../atomos/CancelarParticipacionBtn';
 import SnackbarMessage from '../../templates/SnackbarMessage';
 import VerProyectoBtn from '../atomos/VerProyectoBtn';
 // Permisos/Roles:
@@ -32,7 +31,6 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
     })
     const [participacion, setParticipacion] = useState(false)
     const [actualizar, setActualizar] = useState(false)
-    //const [numberParticipants, setNumber] = useState(0)
     const mountedRef = useRef(false)
     
     function avisoAccion() {
@@ -59,17 +57,9 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
     
     // Functions:
     async function asignarParticipacion() {
-        //debugger
         const participa = await onGetParticipacion(proyecto.id)
-        const p = participa === true? true : false
-        return p
+        return participa === true? true : false
     }
-/*
-    async function getNumberParticipants() {
-        const numberParticipants = await onNumeroParticipantes(proyecto.id);
-        setNumber(numberParticipants);
-    }*/
-
     function asignarSnackbarStatus(message, active, status){
         setSnackbarStatus({
             message: message,
@@ -81,13 +71,11 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
         setSnackbar({message, severity, active:true})
     }
     const activateSnackBar = () => {
-        //debugger
         let activar = snackbarStatus.active
         let estado = snackbarStatus.status
         let mensaje = snackbarStatus.message
         if(activar){
             if(estado){
-                //debugger
                 activeSnackbar(mensaje, "success")
             } else{
                 activeSnackbar(mensaje, "error")
@@ -110,15 +98,6 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
                                                     onAvisoAccion={avisoAccion}
                                                     />
                             : ''
-    /*const botonCancelarParticipacion = participacion === true?
-                            <CancelarParticipacionBtn proyecto={proyecto} 
-                                                    onCancelarParticipacion={onCancelarParticipacion} 
-                                                    onGetParticipacion={onGetParticipacion}
-                                                    onAsignarParticipacion={asignarParticipacion}
-                                                    onAsignarSnackbarStatus={asignarSnackbarStatus}
-                                                    onAvisoAccion={avisoAccion}
-                                                    />
-                            : ''*/
     const botonEditarProyecto = <PuertaPermisos scopes={[SCOPES.canCrudProyectos]}>
                                     <EditarProyectoBtn  onActivarForm={onActivarForm}
                                                         proyecto={proyecto}/>
@@ -128,7 +107,7 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
         var resp="";
         var cont=true;
         var i=0;
-        for(i=0; i < 100 && cont; i++){
+        for(i; i < 100 && cont; i++){
             if(proyecto.descripcion[i]!==undefined){
                 resp += proyecto.descripcion[i];
             }else {
@@ -138,18 +117,7 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
         if(i >= 85) {
             resp += '...';
         }
-        
         return resp;
-        /*
-        if( proyecto.descripcion.length > 85 ) {
-            for(var i=0; i < 85; i++){
-                resp += proyecto.descripcion[i];
-            }
-            resp += '...';
-        } else {
-            resp = proyecto.descripcion;
-        }
-        return resp;*/
     }
 
     function title (){
@@ -157,7 +125,7 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
         var resp="";
         var cont=true;
         var i=0;
-        for( i=0; i < 35 && cont; i++){
+        for( i; i < 35 && cont; i++){
             if(proyecto.titulo){
                 if(proyecto.titulo[i]){
                     resp += proyecto.titulo[i];
@@ -172,17 +140,6 @@ function ContenidoProyecto({proyecto, /*rol,*/ onActivarForm, onPartiparProy, on
             resp += '...';
         }
         return resp;
-        /*
-        if( proyecto.titulo.length > 29 ) {
-            for(var i=0; i < 29; i++){
-                resp += proyecto.titulo[i];
-            }
-            resp += '...';
-        } else {
-            resp = proyecto.titulo;
-        }
-        return resp;
-        */
     }
     
     return (
