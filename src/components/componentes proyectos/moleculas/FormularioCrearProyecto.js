@@ -2,11 +2,9 @@
 import InputTexto from '../moleculas/InputTexto'
 // Librerias-Paquetes:
 import '../moleculas/FormularioCrearProyecto.css'
-//import {VARIABLES} from '../organismos/variables-compartidas'
 import { useState } from "react"
 import React from 'react';
 import { Button, Modal} from '@material-ui/core';
-//import { Button, Modal, FormData, FormControl, MenuItem, Select, InputLabel} from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useForm, /*SubmitHandler,*/ FormProvider } from "react-hook-form";
@@ -30,7 +28,6 @@ function FormularioCrearProyecto({ onCrearProy, onActivarForm, mostrarFormCrear,
     const [categoria, setCategoria] = useState('1')
     const [estado, setEstado] = useState(20)
     const [informacion_adicional, setInfoAd] = useState('')
-    //const [image, setImagen] = useState('')
     const [url_imagen, setImagenUrl] = useState('')
     // Modal/popup styles:
     const [modalStyle] = React.useState(getModalStyle);
@@ -79,7 +76,6 @@ function FormularioCrearProyecto({ onCrearProy, onActivarForm, mostrarFormCrear,
     const onChangeCategoria = (e) => {setCategoria(e.target.value);}
     const onChangeEstado = (e) => {setEstado(e.target.value)}
     const onChangeInfoAd = (e) => {setInfoAd(e.target.value)}
-    //const onChangeImagen = (e) => {setImagen(e.target.value)}
     const onChangeImagenUrl = (e) => {setImagenUrl(e.target.value)}
     
     const onSubmit = (data) => {

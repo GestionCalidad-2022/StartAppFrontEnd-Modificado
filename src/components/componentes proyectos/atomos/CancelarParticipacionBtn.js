@@ -9,12 +9,6 @@ import { withStyles } from "@material-ui/core/styles";
 // Merce Vic
 function CancelarParticipacionBtn( {proyecto, onCancelarParticipacion, onAsignarSnackbarStatus, onAsignarParticipacion, onAvisoAccion}) {
 
-    // States
-    //const [snackbar, setSnackbar] = React.useState()
-    /*useEffect(function () {
-        onAsignarParticipacion()
-    }, [snackbar, participacion])*/
-
     const onClick = async (event) => {
         const cancelResponse = await onCancelarParticipacion(proyecto.id);
         if(cancelResponse){

@@ -14,11 +14,6 @@ function SnackBarProyectos({infoSnackbar}) {
         active:false,
         severity:"success"
     })
-    /*const [snackbarStatus, setSnackbarStatus] = useState({
-        message: infoSnackbar && infoSnackbar.message,
-        active: infoSnackbar && infoSnackbar.active,//false,
-        status: infoSnackbar && infoSnackbar.status,
-    })*/
 
     const mountedRef = useRef(false)
 
@@ -36,7 +31,6 @@ function SnackBarProyectos({infoSnackbar}) {
             } else{
                 activeSnackbar(mensaje, "error")
             }
-            //asignarSnackbarStatus(mensaje, false, estado); // reset para que no reaparezca indebidamente
         }
         activateSnackBar()
         
@@ -45,13 +39,6 @@ function SnackBarProyectos({infoSnackbar}) {
         }
     }, [infoSnackbar])
 
-    /*function asignarSnackbarStatus(message, active, status){
-        setSnackbarStatus({
-            message: message,
-            active: active,
-            status: status
-        })
-    }*/
     const activeSnackbar = (message, severity )=>{
         setSnackbar({message, severity, active:true})
     }

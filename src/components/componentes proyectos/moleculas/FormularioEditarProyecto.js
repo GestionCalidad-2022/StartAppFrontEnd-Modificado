@@ -4,7 +4,6 @@ import InputTexto from '../moleculas/InputTexto'
 import '../moleculas/FormularioCrearProyecto.css'
 import { useState } from "react"
 import React from 'react';
-//import { makeStyles } from '@material-ui/core/styles'
 import { Button, Modal } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -19,8 +18,7 @@ function FormularioEditarProyecto({ onEditarProy, onActivarForm, proyecto, mostr
         {value: 10, label: "CONCLUIDO", bool: false},
         {value: 20, label: "EN CURSO", bool: true}
     ]
-    //const estadoAcabadoLabel = estados[0].label
-    //const estadoEnCursoLabel = estados[1].label
+    
     const estadoAcabadoValor = estados[0].value
     const estadoEnCursoValor = estados[1].value
 

@@ -150,8 +150,8 @@ const RegisterForm = () => {
             id_autenticacion: parseInt(id_auth),
           };
           AxiosClient.post(`${URL}extended_form`, body)
-            .then((response) => {
-              if (response.status === 201) {
+            .then((res) => {
+              if (res.status === 201) {
                 setActiveProgressBar(false);
                 activeSnackbar(
                   `Se ha enviado un correo de confirmación al email: ${bodyAuth.email}`,
@@ -162,9 +162,9 @@ const RegisterForm = () => {
                 );
               }
             })
-            .catch((response) => {
+            .catch((res) => {
               setActiveProgressBar(false);
-              activeSnackbar(`${response}`, "error", () => {
+              activeSnackbar(`${res}`, "error", () => {
                 window.location.reload();
               });
             });

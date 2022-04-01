@@ -45,7 +45,7 @@ class ListaParticipantesProyecto extends Component {
       });
   }
   getId(thisUrl) {
-    return thisUrl.split("/").pop();;
+    return thisUrl.split("/").pop();
   }
 
   render() {
