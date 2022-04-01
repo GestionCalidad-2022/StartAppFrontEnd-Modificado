@@ -8,7 +8,7 @@ const ExcelFile = ExportExcel.ExcelFile;
 const ExcelSheet = ExportExcel.ExcelSheet;
 const ExcelColumn = ExportExcel.ExcelColumn;
 const url = process.env.REACT_APP_API;
-// const url = `http://localhost:5000/`;
+
 class ListaParticipantesProyecto extends Component {
   constructor(props) {
     super(props);
@@ -45,15 +45,11 @@ class ListaParticipantesProyecto extends Component {
       });
   }
   getId(thisUrl) {
-    var id = thisUrl.substring(thisUrl.indexOf("/") + 1);
-    id = thisUrl.split("/").pop();
-    return id;
+    return thisUrl.split("/").pop();;
   }
 
   render() {
     const { posts } = this.state;
-    //const { inicio } = this.state;
-    //const { fin } = this.state;
     return (
       <Box>
         <ExcelFile
