@@ -15,16 +15,6 @@ function BodyProyectos({proyectos, rol, onEliminarProy,  onPartiparProy, onActiv
     // obtenga su id.
     // La idea del "renderProyectos" es que se reenderizen los proyectos solo cuando el
     // ultimo proyecto tenga su 'id', para controlar ese warning al crear un proyecto.
-    /*function renderProyectos(){
-        if(typeof(proyectos) !== "undefined"){
-            if(proyectos.length > 0){
-                //console.log(proyectos.length)
-                if(proyectos[proyectos.length - 1].hasOwnProperty('id')===true){
-                    //console.log('aqui vendria el map, pero falta algo')
-                }
-            }
-        }
-    }*/
     return (
         <Box>
             <div className="body-container">

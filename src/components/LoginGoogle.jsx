@@ -26,15 +26,12 @@ const onSubmit = async (values) => {
           id_autenticacion: parseInt(id_auth),
         }
         AxiosClient.post(`${URL}extended_form`, body)
-          .then((response) => {
-            if (response.status === 201) {
+          .then((res) => {
+            if (res.status === 201) {
               sessionStorage.setItem("jwt", values.credential.accessToken);
               sessionStorage.setItem("id", id_auth);
               window.location.href = `/`;
             }
-          })
-          .catch((response) => {
-            console.log(response)
           })
       }
     }) 
@@ -45,18 +42,15 @@ const onSubmit = async (values) => {
         idGoogle: values.additionalUserInfo.profile.id,
       };
       AxiosClient.post(`${URL_AUTH}api/auth/signin`, body)
-      .then((response) => {
-        if ((response.status = 201)) {
-          const jwt = response.data.accessToken;
-          const id_auth = response.data.id;
+      .then((res) => {
+        if ((res.status === 201)) {
+          const jwt = res.data.accessToken;
+          const id_auth = res.data.id;
           sessionStorage.setItem("jwt", jwt);
           sessionStorage.setItem("id", id_auth);
           window.location.href = `/`;
         }
       })
-      .catch((response) => {
-        console.log(response)
-      });
     })
 }
 

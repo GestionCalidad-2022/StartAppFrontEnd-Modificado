@@ -37,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
 const url = process.env.REACT_APP_API;
 const baseURL = `${url}extended_form/`;
 
-//const baseURL = "http://localhost:5000/extended_form/";
-
 export default function ProfileImage({ getDataProfile, setDataProfile, sessionData }) {
   const classes = useStyles();
   const smallScreen = !useMediaQuery("(min-width:760px)")
@@ -67,7 +65,14 @@ export default function ProfileImage({ getDataProfile, setDataProfile, sessionDa
     peticionPut(disponibilidad);
 
   }
-
+  function getName(condition, val1, val2) {
+    if(condition) {
+      return val1
+    }
+    else { 
+      return val2;
+    }
+  };
   const handleChange = () => { return null; };
 
   return (
@@ -96,7 +101,7 @@ export default function ProfileImage({ getDataProfile, setDataProfile, sessionDa
       <Box textAlign={smallScreen? "left": "center"} sx={smallScreen? {marginLeft: "10px"}: {margin:"10px"}}>
         <Grid>
         {smallScreen? <Typography variant="subtitle1" style={{fontWeight: "bold"}}>
-            {getDataProfile.nombre? getDataProfile.nombre.split(" ")[0]: " "} {getDataProfile.apellido? getDataProfile.apellido.split(" ")[0]: " "} 
+            {getName(getDataProfile.nombre, getDataProfile.nombre.split(" ")[0], " ")} {getName(getDataProfile.apellido, getDataProfile.apellido.split(" ")[0], " ")} 
           </Typography>:
           <Typography variant="subtitle1" style={{fontWeight: "bold"}}>
             {getDataProfile.nombre} {getDataProfile.apellido}

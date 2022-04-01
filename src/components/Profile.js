@@ -22,9 +22,6 @@ const { getCountries } = require("country-list-spanish");
 const url = process.env.REACT_APP_API;
 const urlTablaExtensa = `${url}extended_form/`;
 
-
-//const urlTablaExtensa = "http://localhost:5000/extended_form/";
-
 function getModalStyle() {
   const top = 50;
   const left = 50;

@@ -1,4 +1,3 @@
-//import { cloneElement } from "react";
 import { PERMISSIONS } from "./map-permisos.js";
 import useGetRole from "./useGetRole";
 
