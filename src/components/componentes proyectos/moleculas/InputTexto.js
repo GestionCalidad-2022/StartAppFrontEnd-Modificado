@@ -14,11 +14,13 @@ function InputTexto({tituloLabel, type,  value, placeHolder, onChange, nameId, o
     
     // Funciones:
     const showErrorMessage = (show, msg="") => {
-        if(!show) return ""
-        const errorLabel = (<p style={{color: 'red', fontSize: "0.8em"}}> 
-                                {msg}
-                            </p>)
-        return errorLabel
+        if(!show)
+        {  
+             return (<p></p>)
+        }
+        return (<p style={{color: 'red', fontSize: "0.8em"}}> 
+                    {msg}
+                </p>)
     }
 
     return (

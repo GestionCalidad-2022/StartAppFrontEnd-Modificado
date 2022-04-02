@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, esES } from "@material-ui/data-grid";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Popover, useMediaQuery } from "@material-ui/core";
 import axios from "axios";
 import SearchField from "./SearchByField";
-import { useMediaQuery } from "@material-ui/core";
 import DownloadButton from "./DownloadExcelButton";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import { Popover } from "@material-ui/core";
 import EditUser from "./EditUser";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((themes) => ({
   section: {
     width: "75%",
     margin: "50px auto",
@@ -108,7 +106,6 @@ const theme = createTheme(esES);
 const url = process.env.REACT_APP_API;
 const baseURL = `${url}extended_form`;
 const calculateAge = (birthday) => {
-  // birthday is a date
   birthday = new Date(birthday);
   var ageDifMs = Date.now() - birthday.getTime();
   var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -124,47 +121,35 @@ function Users({sessionData}) {
     const position = document.getElementById("position-popover");
     setAnchorEl(position);
   };
+  let rowToUpdatetoString = `${rowToUpdate.relacion_contacto_de_emergencia}`
+  function returnNewUsers(u){
+    
+    return rowToUpdate.id_usuario === u.id_usuario
+        ? {
+            ...rowToUpdate,
+            nombre_completo: `${rowToUpdate.nombre ? rowToUpdate.nombre : ""} ${
+              rowToUpdate.apellido ? rowToUpdate.apellido : ""
+            }`,
+            persona_contacto_de_emergencia: `${
+              rowToUpdate.nombre_contacto_de_emergencia
+                ? rowToUpdate.nombre_contacto_de_emergencia
+                : ""
+            } (${
+              rowToUpdate.relacion_contacto_de_emergencia
+                ? rowToUpdatetoString: ""
+            })`,
+          }
+        : u;
+  }
 
   const handleClose = () => {
     setAnchorEl(null);
     let newUsers = data.map((u) => {
-      return rowToUpdate.id_usuario === u.id_usuario
-        ? {
-            ...rowToUpdate,
-            nombre_completo: `${rowToUpdate.nombre ? rowToUpdate.nombre : ""} ${
-              rowToUpdate.apellido ? rowToUpdate.apellido : ""
-            }`,
-            persona_contacto_de_emergencia: `${
-              rowToUpdate.nombre_contacto_de_emergencia
-                ? rowToUpdate.nombre_contacto_de_emergencia
-                : ""
-            } (${
-              rowToUpdate.relacion_contacto_de_emergencia
-                ? `${rowToUpdate.relacion_contacto_de_emergencia}`
-                : ""
-            })`,
-          }
-        : u;
+      return returnNewUsers(u);
     });
     setData(newUsers);
     newUsers = originalData.map((u) => {
-      return rowToUpdate.id_usuario === u.id_usuario
-        ? {
-            ...rowToUpdate,
-            nombre_completo: `${rowToUpdate.nombre ? rowToUpdate.nombre : ""} ${
-              rowToUpdate.apellido ? rowToUpdate.apellido : ""
-            }`,
-            persona_contacto_de_emergencia: `${
-              rowToUpdate.nombre_contacto_de_emergencia
-                ? rowToUpdate.nombre_contacto_de_emergencia
-                : ""
-            } (${
-              rowToUpdate.relacion_contacto_de_emergencia
-                ? `${rowToUpdate.relacion_contacto_de_emergencia}`
-                : ""
-            })`,
-          }
-        : u;
+      return returnNewUsers(u);
     });
     setOriginalData(newUsers);
   };
@@ -182,6 +167,7 @@ function Users({sessionData}) {
       .then((response) => {
         var resp = response.data.data;
         resp = resp.map((person) => {
+          let personContactToStting = `${person.relacion_contacto_de_emergencia}`;
           return {
             ...person,
             id: person.id_usuario,
@@ -197,7 +183,7 @@ function Users({sessionData}) {
                 : ""
             } (${
               person.relacion_contacto_de_emergencia
-                ? `${person.relacion_contacto_de_emergencia}`
+                ? personContactToStting
                 : ""
             })`,
           };

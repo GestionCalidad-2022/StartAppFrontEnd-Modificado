@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { DataGrid } from '@material-ui/data-grid';
-import { makeStyles} from '@material-ui/core'
-import { useMediaQuery } from '@material-ui/core'
+import { makeStyles, useMediaQuery} from '@material-ui/core'
 
 const useStyles = makeStyles((theme)=>({
     section: {
@@ -58,7 +57,6 @@ const baseURL=`${url}sesion`;
 function ListaProyectos () {
     const classes = useStyles()
     const [data, setData] = useState([])
-    //const [originalData, setOriginalData] = useState([])
     const smallScreen = useMediaQuery('(min-width:700px)')
     const obtenerParticipacionProyecto = async () => {
         const idSesion = sessionStorage.getItem("id");
@@ -68,12 +66,11 @@ function ListaProyectos () {
             method: "GET",
           }
         );
-        const data = await response.json();
-        data.map(element => element.fecha_inicio = element.fecha_inicio[0]+element.fecha_inicio[1]+element.fecha_inicio[2]+element.fecha_inicio[3]
+        const getdata = await response.json();
+        getdata.map(element => element.fecha_inicio = element.fecha_inicio[0]+element.fecha_inicio[1]+element.fecha_inicio[2]+element.fecha_inicio[3]
             +element.fecha_inicio[4]+element.fecha_inicio[5]+element.fecha_inicio[6]+element.fecha_inicio[7]+element.fecha_inicio[8]+
             element.fecha_inicio[9]);
-        setData(data);
-        //setOriginalData(data);
+        setData(getdata);
     }
 
     useEffect( () => {

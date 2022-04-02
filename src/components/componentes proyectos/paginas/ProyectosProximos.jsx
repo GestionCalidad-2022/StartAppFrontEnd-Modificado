@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, useMediaQuery, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-//import CardEvento from './CardEvento'
 import axios from "axios";
 import ResumedCardProyect from "../organismos/ResumedCardProyect";
 
@@ -51,11 +50,17 @@ const ProyectosProximos = ({ title }) => {
         }),
     [baseURL]
   );
+  function validateSmallScreen(valor1,valor2) {
+    if(smallScreen){
+     return valor1;
+    } else {
+      return valor2
+    }
+  }
   return (
     <div
       className={
-        smallScreen ? classes.resp_root_container : classes.root_container
-      }
+        validateSmallScreen(classes.resp_root_container, classes.root_container)}
     >
       {title ? (
         <Typography variant="h2" component="h2" gutterBottom>
@@ -67,7 +72,7 @@ const ProyectosProximos = ({ title }) => {
       {events.length ? (
         <div
           className={classes.containerEvents}
-          style={smallScreen ? { gap: "10px" } : {}}
+          style={validateSmallScreen({ gap: "10px" }, {})}
         >
           {events.map((event) => (
             <ResumedCardProyect event={event} enlisted={true} key={event.id} />
@@ -77,11 +82,7 @@ const ProyectosProximos = ({ title }) => {
         <div className={classes.noEvents}>
           <Typography
             color="textSecondary"
-            className={
-              smallScreen
-                ? classes.resp_noevents_message
-                : classes.noevents_message
-            }
+            className={validateSmallScreen(classes.resp_noevents_message, classes.noevents_message)}
           >
             Aún no te has registrado a ningún proyecto. Una vez te hayas
             registrado a alguno de nuestros proyectos, aparecerán en tu página de

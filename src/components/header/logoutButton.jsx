@@ -22,6 +22,20 @@ const LogoutButton = ({logged, sessionData}) => {
         setOpen((prev) => placement !== newPlacement || !prev);
         setPlacement(newPlacement);
       };
+    function validateNameLenght(valor1,valor2) {
+        if(sessionData.name.lenght<8){
+            return valor1;
+        } else {
+            return valor2
+        }
+    }
+    function validateImgUrl(valor1,valor2) {
+        if(sessionData.foto_url){
+            return valor1;
+        } else {
+            return valor2
+        }
+    }
     return (
         (!logged)?(
             <Button 
@@ -48,9 +62,9 @@ const LogoutButton = ({logged, sessionData}) => {
                     </Fade>
                     )}
                 </Popper>
-                <Chip label={sessionData.name.lenght<8?sessionData.name:sessionData.name.split(" ").map((pal)=>(pal[0])).join("").toUpperCase()} 
+                <Chip label={validateNameLenght(sessionData.name, sessionData.name.split(" ").map((pal)=>(pal[0])).join("").toUpperCase())} 
                 color="primary" 
-                avatar={<Avatar src={sessionData.foto_url?sessionData.foto_url:"https://i.pinimg.com/originals/14/a8/cd/14a8cd8c46df11082f60ae15b97f47ff.jpg"} />} 
+                avatar={<Avatar src={validateImgUrl(sessionData.foto_url, "https://i.pinimg.com/originals/14/a8/cd/14a8cd8c46df11082f60ae15b97f47ff.jpg") } />} 
                 clickable
                 onClick={handleClick('bottom')}
                 style={{marginRight:"0"}}

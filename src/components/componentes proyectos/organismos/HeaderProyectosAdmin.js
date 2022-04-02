@@ -4,8 +4,7 @@ import VolverProyectoBtn from '../atomos/VolverProyectoBtn';
 // Librerias-Paquetes-Estilos: 
 import './HeaderProyectos.css';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import { createTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     far_right: {

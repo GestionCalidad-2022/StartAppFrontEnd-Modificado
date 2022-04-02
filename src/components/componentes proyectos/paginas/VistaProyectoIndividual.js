@@ -19,9 +19,7 @@ function VistaProyectoIndividual() {
     }, [])
     
     function getIdFromURL(thisUrl) {
-        var id = thisUrl.substring(thisUrl.indexOf("/") + 1)
-        id = thisUrl.split("/").pop()
-        return id
+        return thisUrl.split("/").pop()
       }
 
     // HTTP requests & functions

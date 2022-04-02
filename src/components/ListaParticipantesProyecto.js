@@ -1,9 +1,7 @@
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, withStyles } from "@material-ui/core";
 import axios from "axios";
 import React, { Component } from "react";
 import ExportExcel from "react-export-excel";
-import { withStyles } from "@material-ui/core";
-
 const ExcelFile = ExportExcel.ExcelFile;
 const ExcelSheet = ExportExcel.ExcelSheet;
 const ExcelColumn = ExportExcel.ExcelColumn;

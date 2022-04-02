@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import LogoStart from "../images/logoStart.png";
-import { Typography } from "@material-ui/core";
-import { useMediaQuery } from "@material-ui/core";
+import { Typography, useMediaQuery } from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { makeStyles} from '@material-ui/core';
-import { useMediaQuery } from '@material-ui/core';
+import { makeStyles, useMediaQuery} from '@material-ui/core';
 import axios from "axios";
 
 const useStyles = makeStyles((theme)=>({
@@ -63,7 +62,6 @@ const columns = [
 ];
 
 const url = process.env.REACT_APP_API;
-//const localUrl=`http://localhost:5000/sesion`; //para pruebas
 const localUrl=`${url}sesion`;
 const api = axios.create({
  baseURL: localUrl,
@@ -75,10 +73,10 @@ function ListaEventos () {
     const smallScreen = useMediaQuery('(min-width:700px)')
     const obtenerParticipacionEvento = async () => {
         const idSesion = sessionStorage.getItem("id");
-        let data = await api.get(
+        let getData = await api.get(
           `${localUrl}/${idSesion}/get_my_eventos`
-        ).then(data => data);
-        setData(data.data);
+        ).then(d => d);
+        setData(getData.d);
     }
 
     useEffect( () => {

@@ -101,8 +101,8 @@ const EditUser = ({ rowToUpdate, setRowToUpdate, handleCloseButton }) => {
         if (response.status === 200){
           setInsignias(response.data.data.insignias)
           axios.get(`${URL}insignias`)
-            .then((response)=>{
-              setTodasInsignias(response.data.data)}
+            .then((res)=>{
+              setTodasInsignias(res.data.data)}
             )
         }
       })
@@ -127,22 +127,25 @@ const EditUser = ({ rowToUpdate, setRowToUpdate, handleCloseButton }) => {
   const activeSnackbar = (message, severity, afterClose) => {
     setSnackbar({ message, severity, afterClose, active: true })
   }
-  
+  function activateSnakBar(status){
+    if (status === 202) {
+      activeSnackbar(
+        `Se han registrado los cambios.`,
+        "success",
+        () => {return ""}
+      )
+    }
+  }
   const API_URL = process.env.REACT_APP_API
   const updateUserField = () => {
+    
     if (newValue[fieldsToEdit[criteria]]) {
       setRowToUpdate(newValue)
       const user = { [fieldsToEdit[criteria]]: newValue[fieldsToEdit[criteria]] }
       axios
         .put(`${API_URL}extended_form/${rowToUpdate.id_usuario}`, user)
         .then((response) => {
-          if (response.status === 202) {
-            activeSnackbar(
-              `Se han registrado los cambios.`,
-              "success",
-              () => {return ""}
-            )
-          }
+            activateSnakBar(response.status)
         })
         .catch((error) => {
           activeSnackbar("Ha ocurrido un error.", "error", () => {return ""})
@@ -153,16 +156,10 @@ const EditUser = ({ rowToUpdate, setRowToUpdate, handleCloseButton }) => {
     }
   }
   const updateInsigniasField= () => {
-    const body = {"insignias": insignias.join(',')}
-    axios.put(`${API_URL}insignias/${rowToUpdate.id_usuario}`, body)
+    const data = {"insignias": insignias.join(',')}
+    axios.put(`${API_URL}insignias/${rowToUpdate.id_usuario}`, data)
       .then((response) => {
-        if (response.status === 202) {
-          activeSnackbar(
-            `Se han registrado los cambios.`,
-            "success",
-            () => {return ""}
-          )
-        }
+       activateSnakBar(response.status)
       })
       .catch((error) => {
         activeSnackbar("Ha ocurrido un error.", "error", () => {return ""})

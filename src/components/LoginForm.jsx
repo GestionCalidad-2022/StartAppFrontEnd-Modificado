@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Form, Field } from "react-final-form";
 import { TextField } from "final-form-material-ui";
 import { useMediaQuery, Button, Typography, Grid } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { validEmail } from "./RegEx";
 import AxiosClient from "./AxiosClient";
 import LogoAndSlogan from "../components/LogoAndSlogan";
@@ -11,7 +11,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import SnackbarMessage from "../components/templates/SnackbarMessage";
 import Card from "@material-ui/core/Card";
 import LoginGoogle from "./LoginGoogle";
-import { NavLink } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   Container: {
     display: "flex",

@@ -35,6 +35,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = ({ currentPath, routes, logged, sessionData, pagesize }) => {
+  function validateCurrentPath(valor1,valor2) {
+    if(currentPath === routes[6].path){
+     return valor1;
+    } else {
+      return valor2
+    }
+  }
+  function validateSmallScreen(valor1,valor2) {
+    if(pagesize === "small"){
+     return valor1;
+    } else {
+      return valor2
+    }
+  }
   const classes = useStyles();
   const history = useHistory();
   return (
@@ -58,11 +72,7 @@ const NavBar = ({ currentPath, routes, logged, sessionData, pagesize }) => {
             : classes.navButton
         }
         onClick={() => history.push(routes[0].path)}
-        style={
-          pagesize === "small"
-              ? { color: "gray" }
-              : { color: "white" }
-        }
+        style={ validateSmallScreen( { color: "gray" }, { color: "white" })}
       />
       <BottomNavigationAction
         // icon={
@@ -92,11 +102,7 @@ const NavBar = ({ currentPath, routes, logged, sessionData, pagesize }) => {
             : classes.navButton
         }
         onClick={() => history.push(logged ? routes[1].path : routes[4].path)}
-        style={
-          pagesize === "small"
-              ? { color: "gray" }
-              : { color: "white" }
-        }
+        style={validateSmallScreen( { color: "gray" }, { color: "white" })}
       />
       <BottomNavigationAction
         icon={(currentPath.includes('eventos'))?<EventNoteIcon />:<EventNoteOutlinedIcon/>}
@@ -108,14 +114,10 @@ const NavBar = ({ currentPath, routes, logged, sessionData, pagesize }) => {
             : classes.navButton
         }
         onClick={() => history.push(logged ? routes[2].path : routes[4].path)}
-        style={
-          pagesize === "small"
-          ? { color: "gray" }
-          : { color: "white" }
-        }
+        style={validateSmallScreen( { color: "gray" }, { color: "white" })}
       />
       <BottomNavigationAction
-        icon={(currentPath === routes[3].path)?<PersonIcon />:<PersonOutlineOutlinedIcon/>}
+        icon={validateCurrentPath(<PersonIcon />, <PersonOutlineOutlinedIcon/>)}
         disabled={currentPath === routes[3].path}
         label="Cuenta"
         className={
@@ -124,28 +126,16 @@ const NavBar = ({ currentPath, routes, logged, sessionData, pagesize }) => {
             : classes.navButton
         }
         onClick={() => history.push(logged ? routes[3].path : routes[4].path)}
-        style={
-          pagesize === "small"
-              ? { color: "gray" }
-              : { color: "white" }
-        }
+        style={validateSmallScreen( { color: "gray" }, { color: "white" })}
       />
       {sessionData.role !== "voluntario" ? (
         <BottomNavigationAction
-          icon={(currentPath === routes[6].path)?<GroupIcon />:<PeopleOutlineIcon/>}
+          icon={validateCurrentPath(<GroupIcon />, <PeopleOutlineIcon/>)}
           disabled={currentPath === routes[6].path}
           label="Usuarios"
-          className={
-            currentPath === routes[6].path
-              ? classes.activeNavButton
-              : classes.navButton
-          }
+          className={ validateCurrentPath(classes.activeNavButton, classes.navButton)}
           onClick={() => history.push(logged ? routes[6].path : routes[4].path)}
-          style={
-            pagesize === "small"
-              ? { color: "gray" }
-              : { color: "white" }
-          }
+          style={validateSmallScreen( { color: "gray" }, { color: "white" })}
         />
       ) : (
         <BottomNavigationAction style={{ display: "none" }} label="" />

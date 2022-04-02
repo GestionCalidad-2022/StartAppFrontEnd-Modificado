@@ -2,8 +2,7 @@
 import InputTexto from '../moleculas/InputTexto'
 // Librerias-Paquetes:
 import '../moleculas/FormularioCrearProyecto.css'
-import { useState } from "react"
-import React from 'react';
+import { React, useState } from "react"
 import { Button, Modal } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -67,26 +66,22 @@ function FormularioEditarProyecto({ onEditarProy, onActivarForm, proyecto, mostr
 
     function findValue(tipo){
         if(tipo==="estado"){
-            const selectEstado = proyecto.estado===true?  estadoEnCursoValor : estadoAcabadoValor
-            return selectEstado
+            return proyecto.estado===true?  estadoEnCursoValor : estadoAcabadoValor;
         }
         if(tipo === "categoria"){
             const foundCategoria = categorias.find(catego => catego.tipo === proyecto.categoria)
-            const selectCategoria = parseInt(foundCategoria.id)
-            return selectCategoria
+            return parseInt(foundCategoria.id);
         }
         if(tipo === "lider"){
             const foundLider = lideres.find(lid=> lid.nombre === proyecto.lider)
             if (foundLider)
             {
-                const selectLider = foundLider.id
-                return selectLider
+                return foundLider.id;
             }
             return 1  
         }
         if(tipo === "fechaInicio"){
-            const mapFechaInicio = proyecto.fecha_inicio.substring(0, 10)
-            return mapFechaInicio
+            return proyecto.fecha_inicio.substring(0, 10)
         }
         if(tipo === "fechaFin"){
             const mapFechaFin = proyecto.fecha_fin

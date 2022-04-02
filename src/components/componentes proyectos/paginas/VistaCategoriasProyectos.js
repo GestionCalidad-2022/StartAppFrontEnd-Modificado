@@ -61,8 +61,6 @@ function VistaCategoriasProyectos() {
             index++
             
         }
-        //dataLider.pop()
-        //console.log(dataLider)
         return dataLider;
     }
 

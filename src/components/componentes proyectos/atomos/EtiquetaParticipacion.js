@@ -1,8 +1,7 @@
 // Componentes:
 
 // Librerias-Paquetes:
-import { Chip } from '@material-ui/core';
-import { makeStyles } from "@material-ui/core";
+import { Chip, makeStyles } from '@material-ui/core';
 
 // Styles
 const useStyles = makeStyles({
