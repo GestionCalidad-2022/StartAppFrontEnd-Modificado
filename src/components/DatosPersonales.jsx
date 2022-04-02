@@ -65,16 +65,22 @@ import { withRouter } from "react-router";
       if (!horas_participadas_val) {
         horas_participadas_val = 0;
       }
-      
-      let msj =  horas_participadas_val === 1 ? '1 hora' : horas_participadas_val + " horas";
-      return msj;
+    
+      return horas_participadas_val === 1 ? '1 hora' : horas_participadas_val + " horas";
     }
-    function mensajeLabel(valor1,valor2) {
+    function ValidateSmallScreen(valor1,valor2) {
       if(smallScreen){
        return valor1;
       } else {
         return valor2
       }
+    }
+    function validateOpen(value1, value2){
+      if(open){
+        return value1;
+       } else {
+         return value2;
+       }
     }
     const handlePopoverOpen = (event) => {
       setAnchorEl(event.currentTarget);
@@ -91,18 +97,18 @@ import { withRouter } from "react-router";
             
           <Grid item xs={12} md={6} className={classes.paper}>
             <Grid>
-              <Paper style={{ padding: "15px" }} className= {smallScreen? classes.smallGrid: ""} >
+              <Paper style={{ padding: "15px" }} className= {ValidateSmallScreen(classes.smallGrid,"")} >
                   <Grid container >
                     <Grid item xs={12} md={6}>
                       <Typography><strong className={classes.blackColor}>Datos Personales:</strong> </Typography>
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <Typography
-                        aria-owns={open ? 'mouse-over-popover' : undefined}
+                        aria-owns={validateOpen('mouse-over-popover', undefined) }
                         aria-haspopup="true"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
-                        align={smallScreen? "left": "right"}
+                        align={ValidateSmallScreen("left","right") }
                         variant="subtitle2"
                         style = {{color: "#4F61EA"}}
                       >
@@ -134,10 +140,10 @@ import { withRouter } from "react-router";
                   </Popover>
                   <Divider style={{ borderColor: "black" }} />
                   <Typography variant="body2" className={classes.greyColor}>
-                    <strong className={classes.blackColor}> Nombre:</strong> {smallScreen? <br></br>: ""} {getDataProfile.nombre} {getDataProfile.apellido} 
+                    <strong className={classes.blackColor}> Nombre:</strong> {ValidateSmallScreen( <br></br>, "")} {getDataProfile.nombre} {getDataProfile.apellido} 
                   </Typography>
                   <Typography variant="body2"  className={classes.greyColor}>
-                   <strong className={classes.blackColor}> Edad:</strong>{" "} {smallScreen? <br></br>: ""}
+                   <strong className={classes.blackColor}> Edad:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.fecha_de_nacimiento ? (
                       calcularEdad(
                         getDataProfile.fecha_de_nacimiento
@@ -147,7 +153,7 @@ import { withRouter } from "react-router";
                     )}
                   </Typography>
                   <Typography variant="body2" className={classes.greyColor}>
-                   <strong className={classes.blackColor}> Género:</strong>{" "} {smallScreen? <br></br>: ""}
+                   <strong className={classes.blackColor}> Género:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.genero ? (
                       getDataProfile.genero
                     ) : (
@@ -156,7 +162,7 @@ import { withRouter } from "react-router";
                   </Typography>
 
                   <Typography variant="body2" className={classes.greyColor}>
-                  <strong className={classes.blackColor}>  Ocupación:</strong>{" "} {smallScreen? <br></br>: ""}
+                  <strong className={classes.blackColor}>  Ocupación:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.ocupacion ? (
                       getDataProfile.ocupacion
                     ) : (
@@ -164,7 +170,7 @@ import { withRouter } from "react-router";
                     )}
                   </Typography>
                   <Typography variant="body2" className={classes.greyColor}>
-                   <strong className={classes.blackColor}> Carrera:</strong>{" "} {smallScreen? <br></br>: ""}
+                   <strong className={classes.blackColor}> Carrera:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.carrera ? (
                       getDataProfile.carrera
                     ) : (
@@ -172,7 +178,7 @@ import { withRouter } from "react-router";
                     )}
                   </Typography>
                   <Typography variant="body2" className={classes.greyColor}>
-                   <strong className={classes.blackColor}> Teléfono:</strong>{" "} {smallScreen? <br></br>: ""}
+                   <strong className={classes.blackColor}> Teléfono:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.telefono ? (
                       getDataProfile.telefono
                     ) : (
@@ -180,7 +186,7 @@ import { withRouter } from "react-router";
                     )}
                   </Typography>
                   <Typography variant="body2" className={classes.greyColor}>
-                   <strong className={classes.blackColor}> Ciudad de residencia:</strong>{" "} {smallScreen? <br></br>: ""}
+                   <strong className={classes.blackColor}> Ciudad de residencia:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.ciudad_de_recidencia ? (
                       getDataProfile.ciudad_de_recidencia
                     ) : (
@@ -188,7 +194,7 @@ import { withRouter } from "react-router";
                     )}
                   </Typography>
                   <Typography variant="body2" className={classes.greyColor}>
-                   <strong className={classes.blackColor}> País de residencia:</strong>{" "} {smallScreen? <br></br>: ""}
+                   <strong className={classes.blackColor}> País de residencia:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.pais_de_recidencia ? (
                       getDataProfile.pais_de_recidencia
                     ) : (
@@ -196,7 +202,7 @@ import { withRouter } from "react-router";
                     )}
                   </Typography>
                   <Typography variant="body2"  className={classes.greyColor}>
-                    <strong className={classes.blackColor}> Horas participadas:</strong>{" "} {smallScreen? <br></br>: ""}
+                    <strong className={classes.blackColor}> Horas participadas:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {(horas_participadas().toString())}
                   </Typography>
                 </Grid>
@@ -207,7 +213,7 @@ import { withRouter } from "react-router";
                   <Typography><strong className={classes.blackColor}> Contacto de emergencia:</strong></Typography>
                   <Divider style={{ borderColor: "black"}} />
                   <Typography variant="body2"  className={classes.greyColor}>
-                  <strong className={classes.blackColor}> Nombre:</strong>{" "} {smallScreen? <br></br>: ""}
+                  <strong className={classes.blackColor}> Nombre:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.nombre_contacto_de_emergencia ? (
                       getDataProfile.nombre_contacto_de_emergencia
                     ) : (
@@ -215,7 +221,7 @@ import { withRouter } from "react-router";
                     )}
                   </Typography>
                   <Typography variant="body2"  className={classes.greyColor}>
-                  <strong className={classes.blackColor}> Relación:</strong>{" "} {smallScreen? <br></br>: ""}
+                  <strong className={classes.blackColor}> Relación:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.relacion_contacto_de_emergencia ? (
                       getDataProfile.relacion_contacto_de_emergencia
                     ) : (
@@ -224,7 +230,7 @@ import { withRouter } from "react-router";
                   </Typography>
 
                   <Typography variant="body2"  className={classes.greyColor}>
-                  <strong className={classes.blackColor}> Teléfono:</strong>{" "} {smallScreen? <br></br>: ""}
+                  <strong className={classes.blackColor}> Teléfono:</strong>{" "} {ValidateSmallScreen(<br></br>, "")}
                     {getDataProfile.numero_contacto_de_emergencia ? (
                       getDataProfile.numero_contacto_de_emergencia
                     ) : (
@@ -233,7 +239,7 @@ import { withRouter } from "react-router";
                   </Typography>
                 </Paper>
                 <Grid className={classes.paper}>
-                  <Paper style={{ padding: "15px" }} className= {smallScreen? classes.smallGrid: ""}>
+                  <Paper style={{ padding: "15px" }} className= {ValidateSmallScreen(classes.smallGrid, "")}>
                     <Typography><strong className={classes.blackColor}>Descripción:</strong></Typography>
                     <Divider style={{ borderColor: "black" }} />
                     {getDataProfile.descripcion_personal ? (
@@ -248,7 +254,7 @@ import { withRouter } from "react-router";
           </Grid>
           <Grid item xs={12} md={6} className={classes.paper}>
               <Grid>
-                <Paper style={{ padding: "15px" }} className= {smallScreen? classes.smallGrid: ""}>
+                <Paper style={{ padding: "15px" }} className= {ValidateSmallScreen(classes.smallGrid, "")}>
                   <Typography ><strong className={classes.blackColor}>Intereses Generales:</strong></Typography>
                   <Divider style={{ borderColor: "black" }} />
                   {getDataProfile.intereses.map((interes) => (
@@ -259,7 +265,7 @@ import { withRouter } from "react-router";
                 </Paper>
               </Grid>
               <Grid className={classes.paper}>
-                <Paper style={{ padding: "15px" }} className= {smallScreen? classes.smallGrid: ""}>
+                <Paper style={{ padding: "15px" }} className= {ValidateSmallScreen(classes.smallGrid, "")}>
                   <Typography><strong className={classes.blackColor}>Cualidades:</strong></Typography>
                   <Divider style={{ borderColor: "black" }} />
                   {getDataProfile.cualidades.map((cualidad) => (
@@ -270,7 +276,7 @@ import { withRouter } from "react-router";
                 </Paper>
               </Grid>
               <Grid className={classes.paper}>
-                <Paper style={{ padding: "15px" }} className= {smallScreen? classes.smallGrid: ""}>
+                <Paper style={{ padding: "15px" }} className= {ValidateSmallScreen(classes.smallGrid, "")}>
                   <Typography><strong className={classes.blackColor}>Aptitudes Técnicas:</strong></Typography>
                   <Divider style={{ borderColor: "black" }} />
                   {getDataProfile.aptitudes_tecnicas.map((aptitud) => (
@@ -288,7 +294,7 @@ import { withRouter } from "react-router";
                   variant="contained"
                   color="primary"
                 >
-                  { mensajeLabel('Editar', 'Editar Perfil') } 
+                  { ValidateSmallScreen('Editar', 'Editar Perfil') } 
                 </Button>}
                 {/* <DeleteButton className={classes.paper} variant="contained">
                   Eliminar perfil

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
-import { Container, Card, Modal, Button, CardBody } from "reactstrap";
+import { Container, Modal, Button, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./EventsList.css";
 import Chip from "@material-ui/core/Chip";
@@ -10,19 +10,8 @@ import { Snackbar } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import EliminarEvento from "./EliminarEvento";
 import Typography from "@material-ui/core/Typography";
-import { Grid, Box, CardHeader } from "@material-ui/core/";
+import { CardHeader } from "@material-ui/core/";
 import { CardContent, CardMedia } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBoxOpen,
-  faInbox,
-  faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import GoogleCalendar from "./googleCalendar.jsx";
 
 const url = process.env.REACT_APP_API;
 const urlDeploy = `${url}eventos`;
@@ -188,16 +177,15 @@ class EventsList extends Component {
 
   //Funciones pertenecientes a obtener Participacion
   postParticipacion = async (event) => {
-    let newUrl =
-      urlParticipacion + event.id + "/sesion/" + window.sessionStorage.id;
+    let newUrl = urlParticipacion + event.id + "/sesion/" + window.sessionStorage.id;
     return await axios
       .post(newUrl, {
         id: event.id,
         id_autenticacion: window.sessionStorage.id,
       })
-      .then(async (response) => {
+      .then((response) => {
         this.mostrarMensajeSnackbar(event);
-        await this.mensajeParticipacion(event);
+        this.mensajeParticipacion(event);
       })
       .catch((error) => {
         console.log(error.message);
@@ -385,7 +373,13 @@ class EventsList extends Component {
   render() {
     const rolUser = this.state.user;
     const { snackbarAbierto } = this.state;
-
+    function validateButtonEvents(value1,value2){
+      if(this.state.botonMostrarEventosArchivados === true)
+      {
+        return value1;
+      }
+      return value2;
+    }
     return (
       <div>
         <Container className="container1">
@@ -409,10 +403,7 @@ class EventsList extends Component {
                 style={{
                   paddingLeft: "50px",
                   paddingTop: "15px",
-                  display:
-                    this.state.botonMostrarEventosArchivados === true
-                      ? "block"
-                      : "none",
+                  display: validateButtonEvents("block", "none")
                 }}
               >
                 <Typography gutterBottom variant="h2" component="h3">
@@ -424,10 +415,7 @@ class EventsList extends Component {
                 style={{
                   paddingLeft: "50px",
                   paddingTop: "15px",
-                  display:
-                    this.state.botonMostrarEventosArchivados === false
-                      ? "block"
-                      : "none",
+                  display:validateButtonEvents("block", "none")
                 }}
               >
                 <Typography gutterBottom variant="h2" component="h3">
@@ -440,10 +428,7 @@ class EventsList extends Component {
               <div className="header-filtro-eventos">
                 <span
                   style={{
-                    display:
-                      this.state.botonMostrarEventosArchivados === true
-                        ? "block"
-                        : "none",
+                    display:validateButtonEvents("block", "none")
                   }}
                   className="span-align"
                 >
@@ -452,9 +437,7 @@ class EventsList extends Component {
 
                 <select
                   style={{
-                    display: this.state.botonMostrarEventosArchivados
-                      ? "block"
-                      : "none",
+                    display:validateButtonEvents("block", "none")
                   }}
                   value={this.state.categoriaFiltrada}
                   onChange={this.filterChangeHandler}
@@ -464,10 +447,7 @@ class EventsList extends Component {
 
                 <span
                   style={{
-                    display:
-                      this.state.botonMostrarEventosArchivados === false
-                        ? "block"
-                        : "none",
+                    display:validateButtonEvents("block", "none")
                   }}
                   className="span-align"
                 >
@@ -476,10 +456,7 @@ class EventsList extends Component {
 
                 <select
                   style={{
-                    display:
-                      this.state.botonMostrarEventosArchivados === false
-                        ? "block"
-                        : "none",
+                    display:validateButtonEvents("block", "none")
                   }}
                   value={this.state.categoriaFiltrada}
                   onChange={this.filterPastEventsChangeHandler}
@@ -510,9 +487,7 @@ class EventsList extends Component {
                     </Button>
                     <Button
                       style={{
-                        display: this.state.botonMostrarEventosArchivados
-                          ? "block"
-                          : "none",
+                        display: validateButtonEvents("block", "none"),
                         borderRadius: 4,
                         height: 51,
                         backgroundColor: "#3B3B3B",
@@ -530,10 +505,7 @@ class EventsList extends Component {
                   <Fragment>
                     <Button
                       style={{
-                        display: this.state.botonMostrarEventosArchivados
-                          ? "block"
-                          : "none",
-
+                        display:validateButtonEvents("block", "none"),
                         borderRadius: 4,
                         height: 51,
                         backgroundColor: "#3B3B3B",
@@ -551,9 +523,7 @@ class EventsList extends Component {
                 <Button
                   href="/eventos"
                   style={{
-                    display: this.state.botonMostrarEventosNoArchivados
-                      ? "block"
-                      : "none",
+                    display: validateButtonEvents("block", "none"),
                     borderRadius: 4,
                     height: 51,
                     backgroundColor: "#3B3B3B",
@@ -620,10 +590,7 @@ class EventsList extends Component {
                             fontSize: "16px",
                             margin: "3px",
                             width: "110px",
-                            display:
-                              this.state.botonMostrarEventosArchivados === true
-                                ? "block"
-                                : "none",
+                            display:validateButtonEvents("block", "none"),
                           }}
                         >
                           {" "}
@@ -641,10 +608,7 @@ class EventsList extends Component {
                             fontSize: "13.5px",
                             margin: "3px",
                             width: "110px",
-                            display:
-                              this.state.botonMostrarEventosArchivados === true
-                                ? "block"
-                                : "none",
+                            display:validateButtonEvents("block", "none"),
                           }}
                         >
                           {" "}

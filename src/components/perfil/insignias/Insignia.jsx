@@ -1,7 +1,6 @@
-import { Typography } from "@material-ui/core";
+import { Typography, makeStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import React from "react";
-import { makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import InsigniaImg from "../../../assets/insignia.jpeg";
 import InsigniaImg2 from "../../../assets/insigniaBloqueada.jpeg";

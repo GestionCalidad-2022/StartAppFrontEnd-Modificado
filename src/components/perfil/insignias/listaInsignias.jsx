@@ -24,10 +24,10 @@ function ListaInsignias() {
   const [insigniasOfUser, setInsigniasUser] = useState([]);
   const obtenerInsigniasUsuario = async () => {
     const idSesion = sessionStorage.getItem("id");
-    let dataUsuario = await api
+    let getDataUsuario = await api
       .get(`${baseURL}/${idSesion}`)
       .then((dataUsuario) => dataUsuario);
-    setInsigniasUser(dataUsuario.data.data);
+    setInsigniasUser(getDataUsuario.data.data);
   };
   const obtenerInsignias = async () => {
     let dataLocal = await api.get(`${baseURL}`).then((data) => data);

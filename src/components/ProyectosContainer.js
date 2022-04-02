@@ -15,9 +15,7 @@ function ProyectosContainer() {
 
     async function fetchProyectos() {
       const response = await fetch(URLProyectos)
-      const data = await response.json()
-  
-      return data;
+      return response.json();
     }
     //Elements
     let componenteProyectos = <PaginaProyectos proyectos={proyectos} />;

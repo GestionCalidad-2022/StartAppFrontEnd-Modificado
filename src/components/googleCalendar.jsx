@@ -105,9 +105,9 @@ function GoogleCalendar({ eventData, active }) {
             resource: event,
           });
 
-          request.execute((event) => {
-            console.log(event);
-            window.open(event.htmlLink);
+          request.execute((e) => {
+            console.log(e);
+            window.open(e.htmlLink);
             window.location.reload();
           });
         });

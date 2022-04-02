@@ -15,9 +15,7 @@ const useStyles = makeStyles((theme) => ({
 const ValidateView = () => {
     const classes = useStyles()
     const getIdFromURL = (thisUrl) =>{
-        var id_ = thisUrl.substring(thisUrl.indexOf("/") + 1)
-        id_ = thisUrl.split("/").pop()
-        return id_
+        return thisUrl.split("/").pop()
     }
     const id = getIdFromURL(window.location.href)
     const URL = `${process.env.REACT_APP_API_AUTH}api/validate/${id}`

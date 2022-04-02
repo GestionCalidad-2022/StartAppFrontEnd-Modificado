@@ -71,7 +71,7 @@ function VistaProyectos() {
     // GETs
     async function fetchProyectos() {
         const response = await fetch(URLProyectos)
-        return await response.json()
+        return response.json()
     }
 
     const fetchProyectosPorCategoria = async(category) => {
@@ -81,12 +81,12 @@ function VistaProyectos() {
 
     async function fetchProyectosPasadosPorCategoria(category) {
         const response = await fetch(`${URLProyectosPasados}/${category}`)
-        return await response.json()
+        return response.json()
     }
     
     const fetchCategorias = async () => {
         const response = await fetch(URLCategorias)
-        return await response.json()
+        return response.json()
     }
 
     async function fetchLideres() {
@@ -108,7 +108,7 @@ function VistaProyectos() {
         { 
             method: 'GET'
         });
-        return await response.json();
+        return response.json();
     }
 
     const obtenerNumeroParticipantes = async (idProyecto) => {
@@ -116,7 +116,7 @@ function VistaProyectos() {
         { 
             method: 'GET'
         });
-        return await response.json();
+        return response.json();
     }
     // CREATEs
     const crearProyecto = async (nuevoProyecto) => {
@@ -151,7 +151,7 @@ function VistaProyectos() {
         { 
             method: 'PUT'
         })
-        return await response.json()
+        return response.json()
     }
     
     // DELETEs
@@ -162,7 +162,7 @@ function VistaProyectos() {
             { 
                 method: 'DELETE'
             })
-            return await response.json()
+            return response.json()
     }
 
     const eliminarProyecto = async (id) => { 

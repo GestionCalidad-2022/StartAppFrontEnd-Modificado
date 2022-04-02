@@ -4,8 +4,7 @@ import { FormControl, MenuItem, Select, InputLabel } from '@material-ui/core';
 function DynamicDropdown({ elements, value, onChange, idField, labelField, titulo }) {
     // FUNCIONES:
     function getElementId(element){
-        const elementId = element[idField] === "string"? parseInt(element[idField]) : element[idField]
-        return elementId
+        return element[idField] === "string"? parseInt(element[idField]) : element[idField];
     }
     // RENDER:
     return (

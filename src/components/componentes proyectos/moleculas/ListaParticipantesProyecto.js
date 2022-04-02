@@ -1,8 +1,7 @@
-import { Box ,List, ListItem,ListItemIcon,ListItemText,Button} from '@material-ui/core';
+import { Box ,List, ListItem,ListItemIcon,ListItemText,Button, withStyles} from '@material-ui/core';
 import axios from 'axios'
 import React,{Component} from 'react'
 import ExportExcel from 'react-export-excel'
-import { withStyles } from '@material-ui/core';
 import PuertaPermisos from '../organismos/PuertaPermisos';
 import {SCOPES} from '../organismos/map-permisos';
 

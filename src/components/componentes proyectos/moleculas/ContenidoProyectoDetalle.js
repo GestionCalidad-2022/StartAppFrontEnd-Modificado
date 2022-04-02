@@ -4,7 +4,7 @@ import CancelarParticipacionBtn from '../atomos/CancelarParticipacionBtn';
 import SnackBarProyectos from '../moleculas/SnackBarProyectos';
 import ParticiparEnProyectoBtn from '../atomos/ParticiparEnProyectoBtn';
 import EliminarProjectoBtn from '../atomos/EliminarProjectoBtn'
-import {useHistory} from "react-router-dom"
+import {useHistory, Switch} from "react-router-dom"
 import './ContenidoProyectoDetalle.css';
 import { Box } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
@@ -101,7 +101,7 @@ function ContenidoProyectoDetalle ({proyecto}) {
             { 
                 method: 'DELETE'
             })
-        return await response.json()
+        return response.json()
     }
     const onGetParticipacion = async (idProyecto) => {
         const idSesion = sessionStorage.getItem("id");
@@ -109,7 +109,7 @@ function ContenidoProyectoDetalle ({proyecto}) {
         { 
             method: 'GET'
         });
-        return await response.json();
+        return response.json();
     }
     const participarEnProyecto = async (id) => { 
         const idSesion = sessionStorage.getItem("id");
@@ -118,7 +118,7 @@ function ContenidoProyectoDetalle ({proyecto}) {
         { 
             method: 'PUT'
         })
-        return await response.json()
+        return response.json()
     }
     const eliminarProyecto = async (id) => { 
         await fetch(

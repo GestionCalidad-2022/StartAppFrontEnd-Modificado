@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { Button, Modal } from "@material-ui/core";
+import { Link, useLocation } from "react-router-dom";
+import { Button, Modal, useMediaQuery, Typography } from "@material-ui/core";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,7 +13,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Chip from "@material-ui/core/Chip";
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
-import { useMediaQuery, Typography } from "@material-ui/core";
 import DialogConfirm from "./DialogConfirm"
 
 const { getCountries } = require("country-list-spanish");

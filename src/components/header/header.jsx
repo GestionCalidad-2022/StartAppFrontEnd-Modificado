@@ -4,8 +4,7 @@ import "./header.css";
 import {
   useMediaQuery,
 } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import routes from "../../routes/Routes";
 import LoggoutButton from "./logoutButton";
 import verifier from "../../routes/AuthRoutesVerifier";
@@ -65,6 +64,20 @@ const Header = ({ sessionData, children }) => {
     }, [])
     return size
   }
+  function validatePathCero(valor1,valor2) {
+    if(location.pathname === routes[0].path){
+     return valor1;
+    } else {
+      return valor2
+    }
+  }
+  function validateSmallScreen(valor1,valor2) {
+    if(smallScreen){
+     return valor1;
+    } else {
+      return valor2
+    }
+  }
   const windowWidth = useWindowSize()
   return (
     <div>
@@ -77,13 +90,14 @@ const Header = ({ sessionData, children }) => {
           location.pathname.includes("reset_password") ||
           location.pathname.includes("recover")
             ? { display: "none" }
-            : (smallScreen)?
-              (location.pathname === routes[0].path)?
-                {width:`${windowWidth}px`, height:`${Math.round(windowWidth*0.6)}px`}:
-                {width:`${windowWidth}px`, height:`${Math.round(windowWidth*0.25)}px`}:
-              (location.pathname === routes[0].path)?
-                {width:`${windowWidth}px`, height:`${Math.round(windowWidth*0.40)}px`}:
-                {width:`${windowWidth}px`}
+            : validateSmallScreen(
+                validatePathCero({width:`${windowWidth}px`, height:`${Math.round(windowWidth*0.6)}px`},
+                                 {width:`${windowWidth}px`, height:`${Math.round(windowWidth*0.25)}px`}),
+                validatePathCero({width:`${windowWidth}px`, height:`${Math.round(windowWidth*0.40)}px`},
+                                 {width:`${windowWidth}px`})
+              )
+    
+                
         }
       >
         <div className="header-logo">

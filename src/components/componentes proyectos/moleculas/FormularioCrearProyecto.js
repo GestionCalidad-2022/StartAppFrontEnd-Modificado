@@ -2,8 +2,7 @@
 import InputTexto from '../moleculas/InputTexto'
 // Librerias-Paquetes:
 import '../moleculas/FormularioCrearProyecto.css'
-import { useState } from "react"
-import React from 'react';
+import { React, useState } from "react"
 import { Button, Modal} from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';

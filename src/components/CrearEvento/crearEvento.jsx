@@ -23,9 +23,8 @@ const apiProyectos = axios.create({
   baseURL: urlProyectos,
 });
 
-class crearEvento extends React.Component {
+class crearEvento{
   constructor() {
-    super();
     this.getLideres();
     this.getCategorias();
     this.getProyectos();
