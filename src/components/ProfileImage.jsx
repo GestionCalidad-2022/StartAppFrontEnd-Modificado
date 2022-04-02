@@ -72,7 +72,7 @@ export default function ProfileImage({ getDataProfile, setDataProfile, sessionDa
     else { 
       return val2;
     }
-  };
+  }
   const handleChange = () => { return null; };
 
   return (

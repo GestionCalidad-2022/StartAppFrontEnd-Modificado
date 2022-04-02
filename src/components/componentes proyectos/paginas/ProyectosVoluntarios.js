@@ -9,8 +9,6 @@ import React from 'react';
 // DIEGO
 //victor y Merce 
 function ProyectosVoluntarios({proyectos, rol, onPartiparProy, onGetParticipacion, onCancelarParticipacion, onNumeroParticipantes, tituloHeader, proyectosPasadosCategoria}) {
-    //const classes = useStyles();
-
     return (
         <Box style={styles}>
             <HeaderProyectos tituloHeader={tituloHeader}/>
@@ -33,13 +31,6 @@ function ProyectosVoluntarios({proyectos, rol, onPartiparProy, onGetParticipacio
 
 const styles= {
     minHeight: "650px"
-    //border: "4px solid orange"
 }
-/*
-const useStyles = makeStyles({ 
-    root: {
-      maxWidth: 345,
-    },
-  });*/
 
 export default ProyectosVoluntarios
